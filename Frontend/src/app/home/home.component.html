@@ -1,0 +1,61 @@
+<div class="stars">
+  <h2>Список звезд</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Название</th>
+      <th>Координаты</th>
+      <th>Класс</th>
+      <th>Открыл</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let star of stars">
+      <td>{{ star.name }}</td>
+      <td>{{ star.coordinates }}</td>
+      <td>{{ star.class }}</td>
+      <td>{{ star.discoveredBy }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <button (click)="addStar()">Добавить</button>
+  <button (click)="editStar()">Изменить</button>
+  <button (click)="deleteStar()">Удалить</button>
+</div>
+
+<!-- Форма добавления/редактирования звезды -->
+<div class="modal" [class.modal-open]="showModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #starForm="ngForm" (submit)="saveStar()">
+        <h2>{{ formTitle }}</h2>
+        <div class="form-group">
+          <label for="name">Название:</label>
+          <input type="text" name="name" [(ngModel)]="star.name" required>
+        </div>
+        <div class="form-group">
+          <label for="coordinates">Координаты:</label>
+          <input type="text" name="coordinates" [(ngModel)]="star.coordinates" required>
+        </div>
+        <div class="form-group">
+          <label for="class">Класс:</label>
+          <select name="class" [(ngModel)]="star.class" required>
+            <option *ngFor="let starClass of starClasses" [value]="starClass">{{ starClass }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="discoveredBy">Открыл:</label>
+          <select name="discoveredBy" [(ngModel)]="star.discoveredBy" required>
+            <option *ngFor="let discoverer of discoverers" [value]="discoverer">{{ discoverer }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit">{{ submitButtonText }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+

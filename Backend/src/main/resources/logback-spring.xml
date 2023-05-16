@@ -1,0 +1,9 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProfile name="dev">
+        <!-- Настройки для профиля "dev" -->
+    </springProfile>
+    <springProfile name="prod">
+        <!-- Настройки для профиля "prod" -->
+    </springProfile>
+</configuration>
