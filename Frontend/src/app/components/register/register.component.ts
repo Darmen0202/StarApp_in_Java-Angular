@@ -20,7 +20,6 @@ export class RegisterComponent {
 
   register() {
     if (this.password !== this.confirmPassword) {
-      // Выполнить действие при неправильном подтверждении пароля, например, показать сообщение об ошибке
       return;
     }
 

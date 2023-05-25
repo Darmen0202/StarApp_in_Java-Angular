@@ -17,16 +17,15 @@ export class AuthComponent {
   login(): void {
 
     this.csrfService.getCsrfToken().subscribe((csrfToken: string) => {
-      console.log('CSRF Token:', csrfToken); // Проверка значения csrfToken
+      console.log('CSRF Token:', csrfToken);
       const loginData = { username: this.username, password: this.password };
 
       const headers = new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('X-CSRF-TOKEN', csrfToken);
+        .set('X-CSRF-TOKEN',''+ csrfToken);
       const options = { headers: headers };
 
       this.http.post(`${this.apiUrl}/process_login`, loginData, options).subscribe(
-        (response) => {
+        response => {
           console.log('Login successful:', response);
         },
         (error) => {

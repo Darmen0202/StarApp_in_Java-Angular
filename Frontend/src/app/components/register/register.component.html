@@ -1,19 +1,24 @@
-<form (ngSubmit)="register()">
-  <div>
-    <label for="username">Логин:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="username" required>
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="email" required>
-  </div>
-  <div>
-    <label for="password">Пароль:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="password" required>
-  </div>
-  <div>
-    <label for="confirmPassword">Подтверждение пароля:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
-  </div>
-  <button type="submit">Зарегистрироваться</button>
-</form>
+<div class="container">
+  <h2>Регистрация</h2>
+  <form (ngSubmit)="register()">
+    <div>
+      <label for="username">Логин:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div>
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <div>
+      <label for="confirmPassword">Подтверждение пароля:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+    </div>
+    <button type="submit">Зарегистрироваться</button>
+    <a routerLinkActive="active" routerLink="/registration">Регистрация</a>
+  </form>
+</div>
+<router-outlet></router-outlet>

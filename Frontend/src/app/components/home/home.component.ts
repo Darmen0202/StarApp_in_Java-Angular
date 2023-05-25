@@ -1,74 +1,85 @@
-import {Component, OnInit} from "@angular/core";
-import {Star} from "../../models/star";
+import { Component, OnInit } from "@angular/core";
+import { Star } from "../../models/star";
 
-import {StarService} from "../../services/star.service";
-import {AstronomersService} from "../../services/astronomer.service";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StarService } from "../../services/star.service";
+import { AstronomersService } from "../../services/astronomer.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
+import { CsrfService } from "../../services/csrf.service";
 import {Astronomers} from "../../models/astronomer";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-
   public stars!: Star[];
   public astronomers!: Astronomers[];
   public starClasses: string[] = [];
 
   showModal: boolean = false;
-  formTitle: string = '';
+  formTitle: string = "";
   star: Star = {
     id: BigInt(0),
-    name: '',
-    dec: '',
-    ra: '',
-    class: '',
-    astronomer: ''
+    name: "",
+    dec: "",
+    ra: "",
+    class: "",
+    astronomer: "",
   };
   astronomer: Astronomers = {
-    name: '',
+    name: "",
   };
-  submitButtonText: string = '';
+  submitButtonText: string = "";
 
   constructor(
     private modalService: NgbModal,
     private starService: StarService,
-    private astronomersService: AstronomersService
-  ) { }
+    private astronomersService: AstronomersService,
+    private csrfService: CsrfService
+  ) {}
 
   ngOnInit(): void {
     this.getStars();
     this.getAstronomers();
+    this.getCsrfToken();
   }
 
   getStars(): void {
-    this.starService.getStars().subscribe(stars => this.stars = stars);
+    this.starService.getStars().subscribe((stars) => (this.stars = stars));
   }
 
   getAstronomers(): void {
-    this.astronomersService.getAstronomers().subscribe(astronomers => this.astronomers = astronomers);
+    this.astronomersService
+      .getAstronomers()
+      .subscribe((astronomers) => (this.astronomers = astronomers));
+  }
+
+  getCsrfToken(): void {
+    this.csrfService.getCsrfToken().subscribe((token) => {
+      console.log(token);
+    });
   }
 
   addStar(): void {
     this.showModal = true;
-    this.formTitle = 'Добавить звезду';
-    this.submitButtonText = 'Добавить';
+    this.formTitle = "Добавить звезду";
+    this.submitButtonText = "Добавить";
     this.star = {
       id: BigInt(0),
-      name: '',
-      dec: '',
-      ra: '',
-      class: '',
-      astronomer: ''
+      name: "",
+      dec: "",
+      ra: "",
+      class: "",
+      astronomer: "",
     };
   }
 
   editStar(star: Star): void {
     this.showModal = true;
-    this.formTitle = 'Изменить звезду';
-    this.submitButtonText = 'Сохранить';
+    this.formTitle = "Изменить звезду";
+    this.submitButtonText = "Сохранить";
     this.star = { ...star };
   }
 

@@ -9,7 +9,7 @@ import {CsrfService} from "./csrf.service";
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8888/auth/login';
+  private apiUrl = 'http://localhost:8888/process_login';
 
   constructor(private http: HttpClient, private csrfService: CsrfService) { }
 
@@ -18,10 +18,8 @@ export class AuthService {
 
     return this.csrfService.getCsrfToken().pipe(
       switchMap((csrfToken: string) => {
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': csrfToken
-        });
+        const headers = new HttpHeaders()
+          .set('X-CSRF-TOKEN', csrfToken);
 
         return this.http.post<any>(this.apiUrl, body, { headers });
       }),
@@ -32,10 +30,8 @@ export class AuthService {
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An error occurred.';
     if (error.error instanceof ErrorEvent) {
-      // Ошибка клиента
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Ошибка сервера
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.message}`;
     }
     console.error(errorMessage);

@@ -14,7 +14,7 @@ export class RegisterService {
   register(registerData: any) {
     const { username, email, password, csrfToken } = registerData;
     const body = { username, email, password };
-    const headers = new HttpHeaders().set('X-CSRF-TOKEN', csrfToken);
+    const headers = new HttpHeaders().set('X-CSRF-TOKEN', ''+csrfToken);
     const options = { headers };
 
     return this.http.post(`${this.apiUrl}`, body, options);
