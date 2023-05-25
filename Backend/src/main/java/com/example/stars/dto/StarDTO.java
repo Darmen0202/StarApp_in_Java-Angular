@@ -52,4 +52,5 @@ public class StarDTO {
         this.astronomer = astronomer;
     }
 
+
 }

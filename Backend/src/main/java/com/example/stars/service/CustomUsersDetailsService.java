@@ -28,11 +28,11 @@ public class CustomUsersDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        Optional<Users> users = userMapper.getUserByLogin(login);
+        Optional<Users> users = userMapper.getUserByUsername(username);
         if (users.isEmpty()) {
             throw new UsernameNotFoundException("Пользователь не найден");
         }

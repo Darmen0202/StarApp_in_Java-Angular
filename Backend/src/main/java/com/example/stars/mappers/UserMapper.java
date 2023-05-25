@@ -12,16 +12,16 @@ public  interface UserMapper{
     @Select("select * from users")
     List<Users> findAll();
 
-    @Select("select login, password from users where id=#{id}")
+    @Select("select username, password from users where id=#{id}")
     Users getUserById(Long id);
 
-    @Select("select login, password, role from users where login=#{login}")
-    Optional<Users> getUserByLogin(String login);
+    @Select("select username, password, role from users where username=#{username}")
+    Optional<Users> getUserByUsername(String username);
 
-    @Insert("insert into users(login, password, email, role) values( #{login},#{password},#{email},#{role})")
+    @Insert("insert into users(username, password, email, role) values( #{username},#{password},#{email},#{role})")
     void register(Users users);
 
-    @Update("update stars set name=#{name}, name=#{name}, name=#{name}, name=#{name}, where id=#{id}")
+    @Update("update stars set username=#{username}, email=#{email} where id=#{id}")
     void update(Users users);
 
     @Delete("delete from users where id=#{id}")

@@ -1,7 +1,6 @@
 package com.example.stars.controllers;
 
 import com.example.stars.dto.UserDTO;
-import com.example.stars.dto.UserRequestDTO;
 import com.example.stars.exceptions.RegistrationException;
 import com.example.stars.models.Users;
 import com.example.stars.service.UserRegistrationService;
@@ -11,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,11 +36,23 @@ public class AuthController {
         return ResponseEntity.ok("Login page");
     }
 
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login() {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//
+//        if (authentication != null && authentication.isAuthenticated()) {
+//            return ResponseEntity.ok("Login successful");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+//        }
+//    }
+
+
     @GetMapping("/registration")
     public ResponseEntity<String> registrationPage() {
         return ResponseEntity.ok("auth/registration");
     }
-
 
 
     @PostMapping("/registration")

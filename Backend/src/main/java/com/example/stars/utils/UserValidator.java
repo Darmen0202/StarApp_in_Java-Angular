@@ -28,7 +28,7 @@ public class UserValidator implements Validator {
         UserDTO userDTO = (UserDTO) target;
 
         try {
-            customUsersDetailsService.loadUserByUsername(userDTO.getLogin());
+            customUsersDetailsService.loadUserByUsername(userDTO.getUsername());
         } catch (UsernameNotFoundException ignored){
             return;
         }

@@ -66,4 +66,16 @@ public class Stars {
     public void setAstronomer(String astronomer) {
         this.astronomer = astronomer;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Stars{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", dec='").append(dec).append('\'');
+        sb.append(", ra='").append(ra).append('\'');
+        sb.append(", color='").append(color).append('\'');
+        sb.append(", astronomer='").append(astronomer).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

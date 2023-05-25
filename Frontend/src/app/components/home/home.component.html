@@ -1,0 +1,69 @@
+
+<div class="stars">
+  <h2>Список звезд</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Название</th>
+      <th>Dec</th>
+      <th>Ra</th>
+      <th>Класс</th>
+      <th>Открыл</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let star of stars">
+      <td>{{ star.id }}</td>
+      <td>{{ star.name }}</td>
+      <td>{{ star.dec }}</td>
+      <td>{{ star.ra }}</td>
+      <td>{{ star.class }}</td>
+      <td>{{ star.astronomer }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <button (click)="addStar()">Добавить</button>
+  <button (click)="editStar(star)">Изменить</button>
+  <button (click)="deleteStar(star.id)">Удалить</button>
+</div>
+
+<div class="modal" [class.modal-open]="showModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #starForm="ngForm" (submit)="saveStar()">
+        <h2>{{ formTitle }}</h2>
+        <div class="form-group">
+          <label for="name">Название:</label>
+          <input type="text" name="name" [(ngModel)]="star.name" required>
+        </div>
+        <div class="form-group">
+          <label for="dec">Dec:</label>
+          <input type="text" name="dec" [(ngModel)]="star.dec" required>
+        </div>
+        <div class="form-group">
+          <label for="ra">Ra:</label>
+          <input type="text" name="ra" [(ngModel)]="star.ra" required>
+        </div>
+        <div class="form-group">
+          <label for="class">Класс:</label>
+          <select name="class" [(ngModel)]="star.class" required>
+            <option *ngFor="let starClass of starClasses" [value]="starClass">{{ starClass }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="astronomer">Открыл:</label>
+          <select name="astronomer" [(ngModel)]="star.astronomer" required>
+            <option *ngFor="let astronomer of astronomers" [value]="astronomer">{{ astronomer }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit">{{ submitButtonText }}</button>
+        </div>
+        <br/>
+        <a routerLinkActive="active" routerLink="/registration">Регистрация</a>
+      </form>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

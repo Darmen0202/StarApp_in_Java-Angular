@@ -25,6 +25,7 @@ public class StarController {
 
     @GetMapping("")
     public ResponseEntity<String> getStars(){
+        starService.getStarAll();
         return ResponseEntity.ok("");
     }
 

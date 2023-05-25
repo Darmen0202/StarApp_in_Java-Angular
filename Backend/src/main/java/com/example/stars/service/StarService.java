@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class StarService {
 
@@ -36,5 +38,10 @@ public class StarService {
     public String getColor(Long id){
         String color = String.valueOf(starMapper.getStarColor(id));
         return color;
+    }
+
+    @Transactional
+    public List<Stars> getStarAll(){
+        return starMapper.findAll();
     }
 }

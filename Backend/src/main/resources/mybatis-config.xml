@@ -17,8 +17,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/example/stars/mappers/UserMapper.xml"/>
-        <mapper resource="com/example/stars/mappers/StarMapper.xml"/>
+        <mapper resource="com/example/stars/mappers/UserMapper"/>
+        <mapper resource="com/example/stars/mappers/StarMapper"/>
         <mapper resource="com/example/stars/mappers/AstronomerMapper"/>
     </mappers>
 </configuration>

@@ -1,0 +1,14 @@
+<form (ngSubmit)="login()">
+  <div>
+    <label for="username">Логин:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username" required>
+  </div>
+  <div>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required>
+  </div>
+  <button type="submit">Войти</button><br/>
+  <a routerLinkActive="active" routerLink="/registration">Регистрация</a>
+</form>
+
+<router-outlet></router-outlet>

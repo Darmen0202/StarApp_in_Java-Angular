@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/astronomers")
+@RequestMapping("/stars/astronomers")
 public class AstronomerController {
 
     private final AstronomerService astronomerService;
@@ -24,6 +24,7 @@ public class AstronomerController {
 
     @GetMapping()
     public  ResponseEntity<String> view(){
+        astronomerService.getAstronomers();
         return ResponseEntity.ok("This is a astronomers page");
     }
 

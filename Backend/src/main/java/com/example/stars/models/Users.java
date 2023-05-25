@@ -4,7 +4,7 @@ public class Users {
 
     private Long id;
 
-    private String login;
+    private String username;
 
     private String password;
 
@@ -15,8 +15,8 @@ public class Users {
     public Users() {
     }
 
-    public Users(String login, String password, String email, String role) {
-        this.login = login;
+    public Users(String username, String password, String email, String role) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -30,12 +30,12 @@ public class Users {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -60,5 +60,16 @@ public class Users {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Users{");
+        sb.append("username='").append(username).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", role='").append(role).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
